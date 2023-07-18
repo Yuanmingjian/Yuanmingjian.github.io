@@ -1,0 +1,30 @@
+<p>在仓库action中 发送请求api</p>
+<p>编程式路由跳转相比声明式子内存消耗小  一般用到事件委托和自定义事件</p>
+<p>重写封装ajdx是为了加请求前函数和数据响应后函数 可以写一些业务逻辑</p>
+<p>swiper 轮播图  创建swiper实例之前结构（动态从仓库收取的数据可能导致问题）必须完整  否则会出现错误    swiper实例就帮不能写在mounted里  解决方案一 用定时器（事件循环）把实例化放在从仓库取数据的后面   二 用watch＋next Tick</p>
+<p>mock数据 通过mockjs模块实现 模拟数据</p>
+<p><strong>永远不要把v-if 和 v-for 同时用在一个元素上,因为v-for的优先级高于v-if,当v-if去判断条件时,v-for已经遍历结束</strong></p>
+<p>vuex中的getter相当于简化仓库中的数据</p>
+<p>search中 发多次请求的  之前只能发一次请求 因为把发送请求放在了mounted中  只需要监听路由参数里面的数据变化 执行参数再次合并 在发送请求  </p>
+<p>路由的两个生命周期钩子</p>
+<p>监听属性中    <em>data{}里面定义的数据在这里监听不加this</em>  里面的￥route也不用加this</p>
+<p>箭头函数没有大括号会隐式返回值 加了大括号不会返回</p>
+<p>模块化中给小仓库开启命名空间 直接在两种方式获取 </p>
+<pre><code class="javascript"> computed:{
+​    //  ...mapGetters(&quot;search&quot;,[&quot;goodsList&quot;])
+
+​    
+   goodsList(){
+​    return *this*.$store.getters[&quot;search/goodsList&quot;]
+   }
+ }}
+</code></pre>
+<p>search 板块中的难点就在于联系nva（左侧目录） nva先从vuex中得到数据  然后给a添加自定义属性   :<em>data-categoryName</em>&#x3D;”c2.categoryName”       之后通 过路由传参把数据发送给search组件 这其中涉及到要合并参数 以及多次点击 多次发送请求需要在先将之前的数据搞成undifined      这种方法对象如果只有一层 也可以直接在函数中传v-for得item对象</p>
+<p><img src="/../../../images/image-20230226213506425.png" alt="image-20230226213506425"></p>
+<p> Vue2.0项目引入字体库font-awesome<br>vue2.0安装字体库 font-awesome</p>
+<p>&#x2F;&#x2F;安装font-awesome<br>npm install font-awesome –save</p>
+<p>import ‘font-awesome&#x2F;css&#x2F;font-awesome.css’</p>
+<p><i class="fa fa-camera-retro fa-lg"></i></p>
+<p>使用v4版本的图标</p>
+<p>也可以直接使用阿里在线图库 前加iconfont</p>
+<p>vuex actiongs传递多参数的处理方法：调用的时候第二个参数写成多个元素的对象如  this.$store.dispatch(“tset”,{id,name})</p>

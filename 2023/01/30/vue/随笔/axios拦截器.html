@@ -1,0 +1,57 @@
+<p>对ajax请求进行拦截<br>在请求头添加token<br>对ajax响应数据进行拦截<br>统一处理请求失败的情况, 这样就不需要在每个组件里处理失败的情况<br>有些接口需要登录才能访问, 在没登录的情况下跳转到登录页面<br>&#x2F;**</p>
+<ul>
+<li>配置axios的拦截器</li>
+</ul>
+<pre><code class="javascript"> * */  
+   let env = &#39;prod&#39;;  //dev开发, test测试, prod生产
+      let baseURL;
+   if(env === &#39;dev&#39;) {
+      baseURL = &#39;http://localhost:3003&#39;;
+   } else if (env === &#39;test&#39;) {
+      baseURL = &#39;http://test.huruqing.cn:3003&#39;;
+   } else {
+   baseURL = &#39;http://huruqing.cn:3003&#39;;
+   } 
+
+import axios from &#39;axios&#39;; 
+const service = axios.create({
+    baseURL,
+    timeout: 30000
+}) 
+
+// 配置请求拦截
+service.interceptors.request.use((config) =&gt; { 
+    console.log(config);
+    // 添加token
+    // config.headers[&quot;token&quot;] = &quot;gg12j3h4ghj2g134kj1g234gh12jh34k12h34g12kjh34kh1g&quot;;
+      return config;
+    },
+    (error) =&gt; {
+       alert(&#39;发送请求失败&#39;)
+    }
+); 
+
+// 配置响应拦截
+service.interceptors.response.use(
+    (res) =&gt; {
+       if (res.data.code == 666) {
+        return res.data;
+       } else {
+            alert(res.data.msg);
+       }
+    },
+    (error) =&gt; { 
+      alert(&quot;网络异常,请稍后再试&quot;);
+    }
+);  
+
+const get = (url,data) =&gt; {
+    return service.get(url,{params:data});
+} 
+
+export default {
+    ...service,
+    get
+};
+</code></pre>
+<p> ————————————————<br> 版权声明：本文为CSDN博主「牛马小先锋」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br> 原文链接：<a href="https://blog.csdn.net/weixin_45838066/article/details/123171886">https://blog.csdn.net/weixin_45838066/article/details/123171886</a></p>

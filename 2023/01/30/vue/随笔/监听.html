@@ -1,0 +1,7 @@
+<p>watch中的isHot:{</p>
+<p>​      immediate:true,         &#x2F;初始化时让handler调用一下      </p>
+<p>​     deep:true,                      &#x2F;&#x2F;深度监视</p>
+<p>​     handler(newValue,oldValue){</p>
+<p>​      console.log(‘isHot被修改了’,newValue,oldValue)</p>
+<p>​     }</p>
+<p>vue中可以检测到data数据的改变，但提供的watch方法不会检测到多层级的数据变化，如对象里的数据。所以根据数据类型要开启deep：true</p>
